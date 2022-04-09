@@ -1,0 +1,753 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LearningHubModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AdminName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_BankDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="IFSCCODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPIID" Type="nvarchar" MaxLength="100" />
+          <Property Name="BranchCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_BookDetails">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BookName" Type="nvarchar" MaxLength="100" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Publisher" Type="nvarchar" MaxLength="100" />
+          <Property Name="Edition" Type="nvarchar" MaxLength="100" />
+          <Property Name="CategoryId" Type="uniqueidentifier" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_DiscountDetails">
+          <Key>
+            <PropertyRef Name="DiscountId" />
+          </Key>
+          <Property Name="DiscountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DiscountRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BookId" Type="uniqueidentifier" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiscountFrom" Type="datetime" />
+          <Property Name="DiscountTo" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderType" Type="nvarchar" MaxLength="50" />
+          <Property Name="BookId" Type="uniqueidentifier" />
+          <Property Name="OrderBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_ShippingDetails">
+          <Key>
+            <PropertyRef Name="ShippingId" />
+          </Key>
+          <Property Name="ShippingId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Details" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_StockDetails">
+          <Key>
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="StockId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StockDate" Type="datetime" />
+          <Property Name="GST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Bookid" Type="uniqueidentifier" />
+          <Property Name="StockQty" Type="int" />
+          <Property Name="BalanceQty" Type="int" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_tbl_BankDetails_tbl_User">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_BankDetails" Type="Self.tbl_BankDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_BankDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_BookDetails_tbl_Category">
+          <End Role="tbl_Category" Type="Self.tbl_Category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="tbl_BookDetails">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_DiscountDetails_tbl_BookDetails">
+          <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_DiscountDetails" Type="Self.tbl_DiscountDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_BookDetails">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="tbl_DiscountDetails">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_OrderDetails_tbl_BookDetails">
+          <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_OrderDetails" Type="Self.tbl_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_BookDetails">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="tbl_OrderDetails">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_OrderDetails_tbl_User">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_OrderDetails" Type="Self.tbl_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_OrderDetails">
+              <PropertyRef Name="OrderBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ShippingDetails_tbl_User">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_ShippingDetails" Type="Self.tbl_ShippingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_ShippingDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_StockDetails_tbl_BookDetails">
+          <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_StockDetails" Type="Self.tbl_StockDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_BookDetails">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="tbl_StockDetails">
+              <PropertyRef Name="Bookid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LearningHubModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_BankDetails" EntityType="Self.tbl_BankDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_BookDetails" EntityType="Self.tbl_BookDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DiscountDetails" EntityType="Self.tbl_DiscountDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_OrderDetails" EntityType="Self.tbl_OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ShippingDetails" EntityType="Self.tbl_ShippingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_StockDetails" EntityType="Self.tbl_StockDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_BankDetails_tbl_User" Association="Self.FK_tbl_BankDetails_tbl_User">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_BankDetails" EntitySet="tbl_BankDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_BookDetails_tbl_Category" Association="Self.FK_tbl_BookDetails_tbl_Category">
+            <End Role="tbl_Category" EntitySet="tbl_Category" />
+            <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_DiscountDetails_tbl_BookDetails" Association="Self.FK_tbl_DiscountDetails_tbl_BookDetails">
+            <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+            <End Role="tbl_DiscountDetails" EntitySet="tbl_DiscountDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_OrderDetails_tbl_BookDetails" Association="Self.FK_tbl_OrderDetails_tbl_BookDetails">
+            <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+            <End Role="tbl_OrderDetails" EntitySet="tbl_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_OrderDetails_tbl_User" Association="Self.FK_tbl_OrderDetails_tbl_User">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_OrderDetails" EntitySet="tbl_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ShippingDetails_tbl_User" Association="Self.FK_tbl_ShippingDetails_tbl_User">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_ShippingDetails" EntitySet="tbl_ShippingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_StockDetails_tbl_BookDetails" Association="Self.FK_tbl_StockDetails_tbl_BookDetails">
+            <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+            <End Role="tbl_StockDetails" EntitySet="tbl_StockDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LearningHubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Guid" Nullable="false" />
+          <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_BankDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AccountNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IFSCCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UPIID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BranchCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_BankDetails_tbl_User" FromRole="tbl_BankDetails" ToRole="tbl_User" />
+        </EntityType>
+        <EntityType Name="tbl_BookDetails">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Type="Guid" Nullable="false" />
+          <Property Name="BookName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Publisher" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Edition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Guid" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Category" Relationship="Self.FK_tbl_BookDetails_tbl_Category" FromRole="tbl_BookDetails" ToRole="tbl_Category" />
+          <NavigationProperty Name="tbl_DiscountDetails" Relationship="Self.FK_tbl_DiscountDetails_tbl_BookDetails" FromRole="tbl_BookDetails" ToRole="tbl_DiscountDetails" />
+          <NavigationProperty Name="tbl_OrderDetails" Relationship="Self.FK_tbl_OrderDetails_tbl_BookDetails" FromRole="tbl_BookDetails" ToRole="tbl_OrderDetails" />
+          <NavigationProperty Name="tbl_StockDetails" Relationship="Self.FK_tbl_StockDetails_tbl_BookDetails" FromRole="tbl_BookDetails" ToRole="tbl_StockDetails" />
+        </EntityType>
+        <EntityType Name="tbl_Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Guid" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_BookDetails" Relationship="Self.FK_tbl_BookDetails_tbl_Category" FromRole="tbl_Category" ToRole="tbl_BookDetails" />
+        </EntityType>
+        <EntityType Name="tbl_DiscountDetails">
+          <Key>
+            <PropertyRef Name="DiscountId" />
+          </Key>
+          <Property Name="DiscountId" Type="Guid" Nullable="false" />
+          <Property Name="DiscountRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BookId" Type="Guid" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountFrom" Type="DateTime" Precision="3" />
+          <Property Name="DiscountTo" Type="DateTime" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_BookDetails" Relationship="Self.FK_tbl_DiscountDetails_tbl_BookDetails" FromRole="tbl_DiscountDetails" ToRole="tbl_BookDetails" />
+        </EntityType>
+        <EntityType Name="tbl_OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BookId" Type="Guid" />
+          <Property Name="OrderBy" Type="Guid" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_BookDetails" Relationship="Self.FK_tbl_OrderDetails_tbl_BookDetails" FromRole="tbl_OrderDetails" ToRole="tbl_BookDetails" />
+          <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_OrderDetails_tbl_User" FromRole="tbl_OrderDetails" ToRole="tbl_User" />
+        </EntityType>
+        <EntityType Name="tbl_ShippingDetails">
+          <Key>
+            <PropertyRef Name="ShippingId" />
+          </Key>
+          <Property Name="ShippingId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_ShippingDetails_tbl_User" FromRole="tbl_ShippingDetails" ToRole="tbl_User" />
+        </EntityType>
+        <EntityType Name="tbl_StockDetails">
+          <Key>
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="StockId" Type="Guid" Nullable="false" />
+          <Property Name="StockDate" Type="DateTime" Precision="3" />
+          <Property Name="GST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Bookid" Type="Guid" />
+          <Property Name="StockQty" Type="Int32" />
+          <Property Name="BalanceQty" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_BookDetails" Relationship="Self.FK_tbl_StockDetails_tbl_BookDetails" FromRole="tbl_StockDetails" ToRole="tbl_BookDetails" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_BankDetails" Relationship="Self.FK_tbl_BankDetails_tbl_User" FromRole="tbl_User" ToRole="tbl_BankDetails" />
+          <NavigationProperty Name="tbl_OrderDetails" Relationship="Self.FK_tbl_OrderDetails_tbl_User" FromRole="tbl_User" ToRole="tbl_OrderDetails" />
+          <NavigationProperty Name="tbl_ShippingDetails" Relationship="Self.FK_tbl_ShippingDetails_tbl_User" FromRole="tbl_User" ToRole="tbl_ShippingDetails" />
+        </EntityType>
+        <Association Name="FK_tbl_BankDetails_tbl_User">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_BankDetails" Type="Self.tbl_BankDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_BankDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_BookDetails_tbl_Category">
+          <End Role="tbl_Category" Type="Self.tbl_Category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="tbl_BookDetails">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_DiscountDetails_tbl_BookDetails">
+          <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_DiscountDetails" Type="Self.tbl_DiscountDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_BookDetails">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="tbl_DiscountDetails">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_OrderDetails_tbl_BookDetails">
+          <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_OrderDetails" Type="Self.tbl_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_BookDetails">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="tbl_OrderDetails">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_StockDetails_tbl_BookDetails">
+          <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_StockDetails" Type="Self.tbl_StockDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_BookDetails">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="tbl_StockDetails">
+              <PropertyRef Name="Bookid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_OrderDetails_tbl_User">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_OrderDetails" Type="Self.tbl_OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_OrderDetails">
+              <PropertyRef Name="OrderBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ShippingDetails_tbl_User">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_ShippingDetails" Type="Self.tbl_ShippingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_ShippingDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LearningHubDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" />
+          <EntitySet Name="tbl_BankDetails" EntityType="Self.tbl_BankDetails" />
+          <EntitySet Name="tbl_BookDetails" EntityType="Self.tbl_BookDetails" />
+          <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" />
+          <EntitySet Name="tbl_DiscountDetails" EntityType="Self.tbl_DiscountDetails" />
+          <EntitySet Name="tbl_OrderDetails" EntityType="Self.tbl_OrderDetails" />
+          <EntitySet Name="tbl_ShippingDetails" EntityType="Self.tbl_ShippingDetails" />
+          <EntitySet Name="tbl_StockDetails" EntityType="Self.tbl_StockDetails" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
+          <AssociationSet Name="FK_tbl_BankDetails_tbl_User" Association="Self.FK_tbl_BankDetails_tbl_User">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_BankDetails" EntitySet="tbl_BankDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_BookDetails_tbl_Category" Association="Self.FK_tbl_BookDetails_tbl_Category">
+            <End Role="tbl_Category" EntitySet="tbl_Category" />
+            <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_DiscountDetails_tbl_BookDetails" Association="Self.FK_tbl_DiscountDetails_tbl_BookDetails">
+            <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+            <End Role="tbl_DiscountDetails" EntitySet="tbl_DiscountDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_OrderDetails_tbl_BookDetails" Association="Self.FK_tbl_OrderDetails_tbl_BookDetails">
+            <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+            <End Role="tbl_OrderDetails" EntitySet="tbl_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_StockDetails_tbl_BookDetails" Association="Self.FK_tbl_StockDetails_tbl_BookDetails">
+            <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+            <End Role="tbl_StockDetails" EntitySet="tbl_StockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_OrderDetails_tbl_User" Association="Self.FK_tbl_OrderDetails_tbl_User">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_OrderDetails" EntitySet="tbl_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ShippingDetails_tbl_User" Association="Self.FK_tbl_ShippingDetails_tbl_User">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_ShippingDetails" EntitySet="tbl_ShippingDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LearningHubModelStoreContainer" CdmEntityContainer="LearningHubDBContext">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LearningHubModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Admin">
+            <EntityTypeMapping TypeName="LearningHubModel.tbl_Admin">
+              <MappingFragment StoreEntitySet="tbl_Admin">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_BankDetails">
+            <EntityTypeMapping TypeName="LearningHubModel.tbl_BankDetails">
+              <MappingFragment StoreEntitySet="tbl_BankDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="IFSCCODE" ColumnName="IFSCCODE" />
+                <ScalarProperty Name="UPIID" ColumnName="UPIID" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_BookDetails">
+            <EntityTypeMapping TypeName="LearningHubModel.tbl_BookDetails">
+              <MappingFragment StoreEntitySet="tbl_BookDetails">
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Edition" ColumnName="Edition" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Category">
+            <EntityTypeMapping TypeName="LearningHubModel.tbl_Category">
+              <MappingFragment StoreEntitySet="tbl_Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DiscountDetails">
+            <EntityTypeMapping TypeName="LearningHubModel.tbl_DiscountDetails">
+              <MappingFragment StoreEntitySet="tbl_DiscountDetails">
+                <ScalarProperty Name="DiscountId" ColumnName="DiscountId" />
+                <ScalarProperty Name="DiscountRate" ColumnName="DiscountRate" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DiscountFrom" ColumnName="DiscountFrom" />
+                <ScalarProperty Name="DiscountTo" ColumnName="DiscountTo" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_OrderDetails">
+            <EntityTypeMapping TypeName="LearningHubModel.tbl_OrderDetails">
+              <MappingFragment StoreEntitySet="tbl_OrderDetails">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ShippingDetails">
+            <EntityTypeMapping TypeName="LearningHubModel.tbl_ShippingDetails">
+              <MappingFragment StoreEntitySet="tbl_ShippingDetails">
+                <ScalarProperty Name="ShippingId" ColumnName="ShippingId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_StockDetails">
+            <EntityTypeMapping TypeName="LearningHubModel.tbl_StockDetails">
+              <MappingFragment StoreEntitySet="tbl_StockDetails">
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="StockDate" ColumnName="StockDate" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Bookid" ColumnName="Bookid" />
+                <ScalarProperty Name="StockQty" ColumnName="StockQty" />
+                <ScalarProperty Name="BalanceQty" ColumnName="BalanceQty" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="LearningHubModel.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="115d42759d504e9faf75f3c7a42fbda5" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="LearningHubModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LearningHubModel.tbl_Admin" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LearningHubModel.tbl_BankDetails" Width="1.5" PointX="8.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LearningHubModel.tbl_BookDetails" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LearningHubModel.tbl_Category" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LearningHubModel.tbl_DiscountDetails" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LearningHubModel.tbl_OrderDetails" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LearningHubModel.tbl_ShippingDetails" Width="1.5" PointX="8.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LearningHubModel.tbl_StockDetails" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LearningHubModel.tbl_User" Width="1.5" PointX="6" PointY="15" IsExpanded="true" />
+        <AssociationConnector Association="LearningHubModel.FK_tbl_BankDetails_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="LearningHubModel.FK_tbl_BookDetails_tbl_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="LearningHubModel.FK_tbl_DiscountDetails_tbl_BookDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="LearningHubModel.FK_tbl_OrderDetails_tbl_BookDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="LearningHubModel.FK_tbl_StockDetails_tbl_BookDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="LearningHubModel.FK_tbl_OrderDetails_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="LearningHubModel.FK_tbl_ShippingDetails_tbl_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

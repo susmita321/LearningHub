@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LearningHubModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AdminName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_BankDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccountNo" Type="nvarchar" MaxLength="100" />
+    <Property Name="IFSCCODE" Type="nvarchar" MaxLength="50" />
+    <Property Name="UPIID" Type="nvarchar" MaxLength="100" />
+    <Property Name="BranchCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_BookDetails">
+    <Key>
+      <PropertyRef Name="BookId" />
+    </Key>
+    <Property Name="BookId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BookName" Type="nvarchar" MaxLength="100" />
+    <Property Name="AuthorName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Publisher" Type="nvarchar" MaxLength="100" />
+    <Property Name="Edition" Type="nvarchar" MaxLength="100" />
+    <Property Name="CategoryId" Type="uniqueidentifier" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_DiscountDetails">
+    <Key>
+      <PropertyRef Name="DiscountId" />
+    </Key>
+    <Property Name="DiscountId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DiscountRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BookId" Type="uniqueidentifier" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiscountFrom" Type="datetime" />
+    <Property Name="DiscountTo" Type="datetime" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_OrderDetails">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OrderType" Type="nvarchar" MaxLength="50" />
+    <Property Name="BookId" Type="uniqueidentifier" />
+    <Property Name="OrderBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_ShippingDetails">
+    <Key>
+      <PropertyRef Name="ShippingId" />
+    </Key>
+    <Property Name="ShippingId" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Details" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_StockDetails">
+    <Key>
+      <PropertyRef Name="StockId" />
+    </Key>
+    <Property Name="StockId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StockDate" Type="datetime" />
+    <Property Name="GST" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Bookid" Type="uniqueidentifier" />
+    <Property Name="StockQty" Type="int" />
+    <Property Name="BalanceQty" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_tbl_BankDetails_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_BankDetails" Type="Self.tbl_BankDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_BankDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_BookDetails_tbl_Category">
+    <End Role="tbl_Category" Type="Self.tbl_Category" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="tbl_BookDetails">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_DiscountDetails_tbl_BookDetails">
+    <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_DiscountDetails" Type="Self.tbl_DiscountDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_BookDetails">
+        <PropertyRef Name="BookId" />
+      </Principal>
+      <Dependent Role="tbl_DiscountDetails">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_OrderDetails_tbl_BookDetails">
+    <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_OrderDetails" Type="Self.tbl_OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_BookDetails">
+        <PropertyRef Name="BookId" />
+      </Principal>
+      <Dependent Role="tbl_OrderDetails">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_OrderDetails_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_OrderDetails" Type="Self.tbl_OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_OrderDetails">
+        <PropertyRef Name="OrderBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ShippingDetails_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_ShippingDetails" Type="Self.tbl_ShippingDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_ShippingDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_StockDetails_tbl_BookDetails">
+    <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_StockDetails" Type="Self.tbl_StockDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_BookDetails">
+        <PropertyRef Name="BookId" />
+      </Principal>
+      <Dependent Role="tbl_StockDetails">
+        <PropertyRef Name="Bookid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LearningHubModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_BankDetails" EntityType="Self.tbl_BankDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_BookDetails" EntityType="Self.tbl_BookDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_DiscountDetails" EntityType="Self.tbl_DiscountDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_OrderDetails" EntityType="Self.tbl_OrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ShippingDetails" EntityType="Self.tbl_ShippingDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_StockDetails" EntityType="Self.tbl_StockDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbl_BankDetails_tbl_User" Association="Self.FK_tbl_BankDetails_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_BankDetails" EntitySet="tbl_BankDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_BookDetails_tbl_Category" Association="Self.FK_tbl_BookDetails_tbl_Category">
+      <End Role="tbl_Category" EntitySet="tbl_Category" />
+      <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_DiscountDetails_tbl_BookDetails" Association="Self.FK_tbl_DiscountDetails_tbl_BookDetails">
+      <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+      <End Role="tbl_DiscountDetails" EntitySet="tbl_DiscountDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_OrderDetails_tbl_BookDetails" Association="Self.FK_tbl_OrderDetails_tbl_BookDetails">
+      <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+      <End Role="tbl_OrderDetails" EntitySet="tbl_OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_OrderDetails_tbl_User" Association="Self.FK_tbl_OrderDetails_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_OrderDetails" EntitySet="tbl_OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ShippingDetails_tbl_User" Association="Self.FK_tbl_ShippingDetails_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_ShippingDetails" EntitySet="tbl_ShippingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_StockDetails_tbl_BookDetails" Association="Self.FK_tbl_StockDetails_tbl_BookDetails">
+      <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+      <End Role="tbl_StockDetails" EntitySet="tbl_StockDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

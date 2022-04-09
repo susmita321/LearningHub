@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LearningHubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Guid" Nullable="false" />
+    <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_BankDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="AccountNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IFSCCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UPIID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BranchCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_BankDetails_tbl_User" FromRole="tbl_BankDetails" ToRole="tbl_User" />
+  </EntityType>
+  <EntityType Name="tbl_BookDetails">
+    <Key>
+      <PropertyRef Name="BookId" />
+    </Key>
+    <Property Name="BookId" Type="Guid" Nullable="false" />
+    <Property Name="BookName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Publisher" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Edition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Guid" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_Category" Relationship="Self.FK_tbl_BookDetails_tbl_Category" FromRole="tbl_BookDetails" ToRole="tbl_Category" />
+    <NavigationProperty Name="tbl_DiscountDetails" Relationship="Self.FK_tbl_DiscountDetails_tbl_BookDetails" FromRole="tbl_BookDetails" ToRole="tbl_DiscountDetails" />
+    <NavigationProperty Name="tbl_OrderDetails" Relationship="Self.FK_tbl_OrderDetails_tbl_BookDetails" FromRole="tbl_BookDetails" ToRole="tbl_OrderDetails" />
+    <NavigationProperty Name="tbl_StockDetails" Relationship="Self.FK_tbl_StockDetails_tbl_BookDetails" FromRole="tbl_BookDetails" ToRole="tbl_StockDetails" />
+  </EntityType>
+  <EntityType Name="tbl_Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Guid" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_BookDetails" Relationship="Self.FK_tbl_BookDetails_tbl_Category" FromRole="tbl_Category" ToRole="tbl_BookDetails" />
+  </EntityType>
+  <EntityType Name="tbl_DiscountDetails">
+    <Key>
+      <PropertyRef Name="DiscountId" />
+    </Key>
+    <Property Name="DiscountId" Type="Guid" Nullable="false" />
+    <Property Name="DiscountRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BookId" Type="Guid" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiscountFrom" Type="DateTime" Precision="3" />
+    <Property Name="DiscountTo" Type="DateTime" Precision="3" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_BookDetails" Relationship="Self.FK_tbl_DiscountDetails_tbl_BookDetails" FromRole="tbl_DiscountDetails" ToRole="tbl_BookDetails" />
+  </EntityType>
+  <EntityType Name="tbl_OrderDetails">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BookId" Type="Guid" />
+    <Property Name="OrderBy" Type="Guid" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_BookDetails" Relationship="Self.FK_tbl_OrderDetails_tbl_BookDetails" FromRole="tbl_OrderDetails" ToRole="tbl_BookDetails" />
+    <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_OrderDetails_tbl_User" FromRole="tbl_OrderDetails" ToRole="tbl_User" />
+  </EntityType>
+  <EntityType Name="tbl_ShippingDetails">
+    <Key>
+      <PropertyRef Name="ShippingId" />
+    </Key>
+    <Property Name="ShippingId" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_ShippingDetails_tbl_User" FromRole="tbl_ShippingDetails" ToRole="tbl_User" />
+  </EntityType>
+  <EntityType Name="tbl_StockDetails">
+    <Key>
+      <PropertyRef Name="StockId" />
+    </Key>
+    <Property Name="StockId" Type="Guid" Nullable="false" />
+    <Property Name="StockDate" Type="DateTime" Precision="3" />
+    <Property Name="GST" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Bookid" Type="Guid" />
+    <Property Name="StockQty" Type="Int32" />
+    <Property Name="BalanceQty" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_BookDetails" Relationship="Self.FK_tbl_StockDetails_tbl_BookDetails" FromRole="tbl_StockDetails" ToRole="tbl_BookDetails" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_BankDetails" Relationship="Self.FK_tbl_BankDetails_tbl_User" FromRole="tbl_User" ToRole="tbl_BankDetails" />
+    <NavigationProperty Name="tbl_OrderDetails" Relationship="Self.FK_tbl_OrderDetails_tbl_User" FromRole="tbl_User" ToRole="tbl_OrderDetails" />
+    <NavigationProperty Name="tbl_ShippingDetails" Relationship="Self.FK_tbl_ShippingDetails_tbl_User" FromRole="tbl_User" ToRole="tbl_ShippingDetails" />
+  </EntityType>
+  <Association Name="FK_tbl_BankDetails_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_BankDetails" Type="Self.tbl_BankDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_BankDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_BookDetails_tbl_Category">
+    <End Role="tbl_Category" Type="Self.tbl_Category" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="tbl_BookDetails">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_DiscountDetails_tbl_BookDetails">
+    <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_DiscountDetails" Type="Self.tbl_DiscountDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_BookDetails">
+        <PropertyRef Name="BookId" />
+      </Principal>
+      <Dependent Role="tbl_DiscountDetails">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_OrderDetails_tbl_BookDetails">
+    <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_OrderDetails" Type="Self.tbl_OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_BookDetails">
+        <PropertyRef Name="BookId" />
+      </Principal>
+      <Dependent Role="tbl_OrderDetails">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_StockDetails_tbl_BookDetails">
+    <End Role="tbl_BookDetails" Type="Self.tbl_BookDetails" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_StockDetails" Type="Self.tbl_StockDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_BookDetails">
+        <PropertyRef Name="BookId" />
+      </Principal>
+      <Dependent Role="tbl_StockDetails">
+        <PropertyRef Name="Bookid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_OrderDetails_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_OrderDetails" Type="Self.tbl_OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_OrderDetails">
+        <PropertyRef Name="OrderBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ShippingDetails_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_ShippingDetails" Type="Self.tbl_ShippingDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_ShippingDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LearningHubDBContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" />
+    <EntitySet Name="tbl_BankDetails" EntityType="Self.tbl_BankDetails" />
+    <EntitySet Name="tbl_BookDetails" EntityType="Self.tbl_BookDetails" />
+    <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" />
+    <EntitySet Name="tbl_DiscountDetails" EntityType="Self.tbl_DiscountDetails" />
+    <EntitySet Name="tbl_OrderDetails" EntityType="Self.tbl_OrderDetails" />
+    <EntitySet Name="tbl_ShippingDetails" EntityType="Self.tbl_ShippingDetails" />
+    <EntitySet Name="tbl_StockDetails" EntityType="Self.tbl_StockDetails" />
+    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
+    <AssociationSet Name="FK_tbl_BankDetails_tbl_User" Association="Self.FK_tbl_BankDetails_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_BankDetails" EntitySet="tbl_BankDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_BookDetails_tbl_Category" Association="Self.FK_tbl_BookDetails_tbl_Category">
+      <End Role="tbl_Category" EntitySet="tbl_Category" />
+      <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_DiscountDetails_tbl_BookDetails" Association="Self.FK_tbl_DiscountDetails_tbl_BookDetails">
+      <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+      <End Role="tbl_DiscountDetails" EntitySet="tbl_DiscountDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_OrderDetails_tbl_BookDetails" Association="Self.FK_tbl_OrderDetails_tbl_BookDetails">
+      <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+      <End Role="tbl_OrderDetails" EntitySet="tbl_OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_StockDetails_tbl_BookDetails" Association="Self.FK_tbl_StockDetails_tbl_BookDetails">
+      <End Role="tbl_BookDetails" EntitySet="tbl_BookDetails" />
+      <End Role="tbl_StockDetails" EntitySet="tbl_StockDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_OrderDetails_tbl_User" Association="Self.FK_tbl_OrderDetails_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_OrderDetails" EntitySet="tbl_OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ShippingDetails_tbl_User" Association="Self.FK_tbl_ShippingDetails_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_ShippingDetails" EntitySet="tbl_ShippingDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
