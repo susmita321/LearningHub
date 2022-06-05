@@ -85,5 +85,16 @@ namespace LearningHub.Controllers
                 return View();
             }
         }
+
+
+        public ActionResult ShippingForm()
+        {
+            return View();
+        } 
+        public ActionResult Books()
+        {
+            return View();
+        }
+
     }
 }
