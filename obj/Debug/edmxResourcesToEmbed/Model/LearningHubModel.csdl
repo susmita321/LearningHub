@@ -10,21 +10,6 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <EntityType Name="tbl_Admin">
-    <Key>
-      <PropertyRef Name="AdminId" />
-    </Key>
-    <Property Name="AdminId" Type="Guid" Nullable="false" />
-    <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-  </EntityType>
   <EntityType Name="tbl_BankDetails">
     <Key>
       <PropertyRef Name="Id" />
@@ -251,7 +236,6 @@
   </Association>
   <EntityContainer Name="LearningHubDBContext" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" />
     <EntitySet Name="tbl_BankDetails" EntityType="Self.tbl_BankDetails" />
     <EntitySet Name="tbl_BookDetails" EntityType="Self.tbl_BookDetails" />
     <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" />
@@ -288,5 +272,21 @@
       <End Role="tbl_User" EntitySet="tbl_User" />
       <End Role="tbl_ShippingDetails" EntitySet="tbl_ShippingDetails" />
     </AssociationSet>
+    <EntitySet Name="tbl_Admin" EntityType="LearningHubModel.tbl_Admin" />
   </EntityContainer>
+  <EntityType Name="tbl_Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+  </EntityType>
 </Schema>

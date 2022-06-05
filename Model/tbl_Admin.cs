@@ -11,14 +11,19 @@ namespace LearningHub.Model
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class tbl_Admin
     {
-        public System.Guid AdminId { get; set; }
+        [Required(ErrorMessage ="Admin ID can not be blank")]
+        [Display(Name ="Admin ID")]
+        public string AdminId { get; set; }
         public string AdminName { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
         public string PhoneNo { get; set; }
+
+        [Required(ErrorMessage = "Password can not be blank")]
         public string Password { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }

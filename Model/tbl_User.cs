@@ -11,6 +11,7 @@ namespace LearningHub.Model
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class tbl_User
     {
@@ -21,13 +22,20 @@ namespace LearningHub.Model
             this.tbl_OrderDetails = new HashSet<tbl_OrderDetails>();
             this.tbl_ShippingDetails = new HashSet<tbl_ShippingDetails>();
         }
-    
+
+       
         public System.Guid UserId { get; set; }
+        [Required(ErrorMessage = "User Name is required!")]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
         public string Address { get; set; }
         public string PhoneNo { get; set; }
         public string Email { get; set; }
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+      //  [Compare(Comparer<>)]
+        public string ConfirmPassword { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string ModifiedBy { get; set; }

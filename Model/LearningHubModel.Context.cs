@@ -26,7 +26,6 @@ namespace LearningHub.Model
         }
     
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<tbl_Admin> tbl_Admin { get; set; }
         public virtual DbSet<tbl_BankDetails> tbl_BankDetails { get; set; }
         public virtual DbSet<tbl_BookDetails> tbl_BookDetails { get; set; }
         public virtual DbSet<tbl_Category> tbl_Category { get; set; }
@@ -35,5 +34,6 @@ namespace LearningHub.Model
         public virtual DbSet<tbl_ShippingDetails> tbl_ShippingDetails { get; set; }
         public virtual DbSet<tbl_StockDetails> tbl_StockDetails { get; set; }
         public virtual DbSet<tbl_User> tbl_User { get; set; }
+        public virtual DbSet<tbl_Admin> tbl_Admin { get; set; }
     }
 }
